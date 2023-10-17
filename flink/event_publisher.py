@@ -18,11 +18,12 @@ def generate_click_streams() -> str:
     data['id'] = uuid.uuid4().hex
     data['user_agent'] = FAKE.user_agent()
     data['ip'] = FAKE.ipv4()
-    data['email'] = FAKE.email()
-    data['city'] = FAKE.city()
-    data['country'] = FAKE.country()
     data['dow'] = FAKE.day_of_week()
-    data['name'] = FAKE.name()
+    data['user'] = {}
+    data['user']['email'] = FAKE.email()
+    data['user']['city'] = FAKE.city()
+    data['user']['country'] = FAKE.country()
+    data['user']['name'] = FAKE.name()
 
     yield json.dumps(data, ensure_ascii=False).encode('utf-8')
 
