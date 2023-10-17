@@ -73,12 +73,13 @@ def read_from_kafka_consumer(env):
         }
     )
     
+    # Consuming messages and printing
+    ds = env.add_source(kafka_source)
+
     def get_dow(data):
         json_data = json.loads(data)
         return (json_data['dow'], 1)
 
-    # Consuming messages and printing
-    ds = env.add_source(kafka_source)
     ds.map(get_dow).print()
     env.execute()
 
@@ -89,6 +90,11 @@ if __name__ == '__main__':
 
     # Declare environment
     env = StreamExecutionEnvironment.get_execution_environment()
-    env.add_jars(f'file://{working_dir}/flink-sql-connector-kafka-3.0.0-1.17.jar')
+    # Kafka connector
+    env.add_jars(f'file://{working_dir}/jars/flink-sql-connector-kafka-3.0.0-1.17.jar')
+    # JDBC Connector
+    env.add_jars(f'file://{working_dir}/jars/flink-connector-jdbc-3.1.1-1.17.jar')
+    # PostgreSQL driver
+    env.add_jars(f'file://{working_dir}/jars/postgresql-42.6.0.jar')
         
     read_from_kafka_consumer(env)
