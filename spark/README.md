@@ -39,6 +39,9 @@ kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9094 --consumer.config /o
 
 Sample spark job command
 ```bash
+# Start a simple network service using netcat utility
+nc -lk 9999
+
 /path/spark/spark-3.5.0-bin-hadoop3/bin/spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0 --jars /path/spark/jars/postgresql-42.6.0.jar /path/spark/process_stream.py localhost 9999
 ```
 
