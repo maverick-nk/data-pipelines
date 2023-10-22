@@ -1,0 +1,15 @@
+[SHARED]
+SINK_DB_HOST=localhost
+SINK_DB_PORT=5432
+SINK_DB_DB=postgresDB
+SINK_DB_USER=postgres
+SINK_DB_PWD=password
+
+[PROD]
+DEBUG=True
+
+[DEV]
+DEBUG=False
+
+[TEST]
+DEBUG=False
