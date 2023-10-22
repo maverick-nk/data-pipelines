@@ -16,11 +16,15 @@ docker-compose up -d
 
 Creating Kafka Topics
 ```bash
-docker exec -it broker bash
+docker exec -it kafka-broker bash
 cd opt/bitnami/kafka/bin
 
 # Creating 'clicks' topic
 kafka-topics.sh --create --bootstrap-server 127.0.0.1:9094 --replication-factor 1 --partitions 1 --topic clicks
+
+
+# OR single command
+docker exec -it kafka-broker "opt/bitnami/kafka/bin/kafka-topics.sh --create --bootstrap-server 127.0.0.1:9094 --replication-factor 1 --partitions 1 --topic clicks"
 ```
 
 Check Kafka broker
